@@ -27,5 +27,9 @@ async def on_message(message):
             await message.channel.send(f"Google it, {message.author.nick}!")
             break
 
+@client.event
+async def on_typing(channel):
+    await channel.send('Hurry up.')
+
 if __name__ == "__main__":
     client.run(TOKEN)
