@@ -16,15 +16,12 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
-    members = '\n - '.join([member.name for member in guild.members])
-    print(f'Guild Members:\n - {members}')
-
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == "!Test":
-        await message.channel.send("Hello, I am a discord bot")
+    if "?" in message.content.lower():
+        await message.channel.send("GOOGLE IT!")
 
 client.run(TOKEN)
