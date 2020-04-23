@@ -27,4 +27,5 @@ async def on_message(message):
             await message.channel.send(f"Google it, {message.author.nick}!")
             break
 
-client.run(TOKEN)
+if __name__ == "__main__":
+    client.run(TOKEN)
