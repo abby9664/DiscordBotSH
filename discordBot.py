@@ -21,7 +21,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if "?" in message.content.lower():
-        await message.channel.send("GOOGLE IT!")
+    question_keywords = ["?", "what", "when", "who", "where", "why", "how"]
+    for word in question_keywords:
+        if word in message.content.lower():
+            await message.channel.send("GOOGLE IT!")
+            break
 
 client.run(TOKEN)
