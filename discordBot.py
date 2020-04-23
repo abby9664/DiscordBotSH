@@ -2,6 +2,8 @@ import discord
 import os
 from dotenv import load_dotenv
 
+VERSION_NAME = "0.0.2"
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
@@ -26,6 +28,9 @@ async def on_message(message):
         if word in message.content.lower():
             await message.channel.send(f"Google it, {message.author.nick}!")
             break
+
+    if "!version" in message.content.lower(): 
+        await message.channel.send(f"Version {VERSION_NAME}")
 
 @client.event
 async def on_typing(channel):
