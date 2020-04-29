@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 from dotenv import load_dotenv
 
 VERSION_NAME = "0.0.3"
@@ -39,6 +40,7 @@ async def on_message(message):
         embed.add_field(name="!version", value="Lists the version the bot is on", inline=False)
         embed.add_field(name="!info", value="Lists information about the bot", inline=False)
         embed.add_field(name="!iamdumb", value="Gives a statement of semi-apology for idiotic mistakes.", inline=False)
+        embed.add_field(name="!roll <number_of_possibilities>", value="Rolls a dice.")
         await message.channel.send(embed=embed)
 
     if message.content.startswith("!info"):
@@ -49,6 +51,18 @@ async def on_message(message):
 
     if message.content.startswith("!iamdumb"):
         await message.channel.send("I am dumb and I did a dumb. Ignore my dumbness.")
+    
+    if message.content.startswith("!roll"):
+        if " " in message.content:
+            string = message.content.split(" ")[1]
+            if string.isnumeric() == False:
+                await message.channel.send("Give me an integer, idiot.")
+            else:
+                dice_size = int(string)
+                roll = random.randint(0, dice_size)
+                await message.channel.send("Your dice landed on " + str(roll))
+        else:
+            await message.channel.send("Give me an integer, idiot.")
 
 @client.event
 async def on_typing(channel, message, time):
